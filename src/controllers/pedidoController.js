@@ -32,7 +32,28 @@ function listarPedidos(req, res) {
     }
 }
 
+function buscarPedidoPorCodigo(req, res) {
+
+    try {
+
+        const { codigo } = req.params;
+
+        const pedido =
+            pedidoService.buscarPedidoPorCodigo(codigo);
+
+        res.status(200).json(pedido);
+
+    } catch (error) {
+
+        res.status(400).json({
+            erro: error.message
+        });
+
+    }
+}
+
 module.exports = {
     criarPedido,
-    listarPedidos
+    listarPedidos,
+    buscarPedidoPorCodigo
 };

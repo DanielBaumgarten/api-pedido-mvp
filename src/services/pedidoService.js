@@ -92,7 +92,33 @@ function listarPedidos(situacao) {
     }));
 }
 
+function buscarPedidoPorCodigo(codigo) {
+
+    if (isNaN(codigo)) {
+        throw new Error("Código deve ser numérico");
+    }
+
+    const pedido = pedidos.find(
+        pedido => pedido.codigo === Number(codigo)
+    );
+
+    if (!pedido) {
+        throw new Error("Pedido não encontrado");
+    }
+
+    return {
+        codigo: pedido.codigo,
+        dataHora: pedido.dataHora,
+        clienteCpf: pedido.clienteCpf,
+        clienteNome: pedido.clienteNome,
+        produtoNome: pedido.produtoNome,
+        produtoPreco: pedido.produtoPreco,
+        situacao: pedido.situacao
+    };
+}
+
 module.exports = {
     criarPedido,
-    listarPedidos
+    listarPedidos,
+    buscarPedidoPorCodigo
 };

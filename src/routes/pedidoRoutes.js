@@ -13,9 +13,10 @@ router.get(
     pedidoController.listarPedidos
 );
 
-router.get("/pedidos/:codigo", (req, res) => {
-    res.send("Buscar pedido");
-});
+router.get(
+    "/pedidos/:codigo",
+    pedidoController.buscarPedidoPorCodigo
+);
 
 router.patch("/pedidos/:codigo/situacao", (req, res) => {
     res.send("Atualizar situação");
