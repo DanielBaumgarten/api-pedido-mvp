@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-router.post("/pedidos", (req, res) => {
-    res.send("Criar pedido");
-});
+const pedidoController = require("../controllers/pedidoController");
+
+router.post("/pedidos", pedidoController.criarPedido);
 
 router.get("/pedidos", (req, res) => {
     res.send("Listar pedidos");
