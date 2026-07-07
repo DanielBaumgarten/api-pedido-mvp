@@ -13,6 +13,26 @@ function criarPedido(req, res) {
     }
 }
 
+function listarPedidos(req, res) {
+    try {
+
+        const { situacao } = req.query;
+
+        const pedidos =
+            pedidoService.listarPedidos(situacao);
+
+        res.status(200).json(pedidos);
+
+    } catch (error) {
+
+        res.status(400).json({
+            erro: error.message
+        });
+
+    }
+}
+
 module.exports = {
-    criarPedido
+    criarPedido,
+    listarPedidos
 };

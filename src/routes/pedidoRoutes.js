@@ -3,11 +3,15 @@ const router = express.Router();
 
 const pedidoController = require("../controllers/pedidoController");
 
-router.post("/pedidos", pedidoController.criarPedido);
+router.post(
+    "/pedidos",
+    pedidoController.criarPedido
+);
 
-router.get("/pedidos", (req, res) => {
-    res.send("Listar pedidos");
-});
+router.get(
+    "/pedidos",
+    pedidoController.listarPedidos
+);
 
 router.get("/pedidos/:codigo", (req, res) => {
     res.send("Buscar pedido");

@@ -57,6 +57,42 @@ function criarPedido(dados) {
     return pedido;
 }
 
+function listarPedidos(situacao) {
+    if (situacao) {
+
+        const situacoesValidas = [
+            "aberto",
+            "pago",
+            "finalizado"
+        ];
+
+        if (!situacoesValidas.includes(situacao)) {
+            throw new Error("Situação inválida");
+        }
+
+        return pedidos
+            .filter(pedido => pedido.situacao === situacao)
+            .map(pedido => ({
+                codigo: pedido.codigo,
+                dataHora: pedido.dataHora,
+                clienteNome: pedido.clienteNome,
+                produtoNome: pedido.produtoNome,
+                situacao: pedido.situacao,
+                valorTotal: pedido.produtoPreco
+            }));
+    }
+
+    return pedidos.map(pedido => ({
+        codigo: pedido.codigo,
+        dataHora: pedido.dataHora,
+        clienteNome: pedido.clienteNome,
+        produtoNome: pedido.produtoNome,
+        situacao: pedido.situacao,
+        valorTotal: pedido.produtoPreco
+    }));
+}
+
 module.exports = {
-    criarPedido
+    criarPedido,
+    listarPedidos
 };
