@@ -2,14 +2,17 @@ const pedidoService = require("../services/pedidoService");
 
 function criarPedido(req, res) {
     try {
+
         const pedido = pedidoService.criarPedido(req.body);
 
         res.status(201).json(pedido);
 
     } catch (error) {
+
         res.status(400).json({
             erro: error.message
         });
+
     }
 }
 
@@ -33,7 +36,6 @@ function listarPedidos(req, res) {
 }
 
 function buscarPedidoPorCodigo(req, res) {
-
     try {
 
         const { codigo } = req.params;
@@ -52,8 +54,35 @@ function buscarPedidoPorCodigo(req, res) {
     }
 }
 
+function atualizarSituacao(req, res) {
+    try {
+
+        const { codigo } = req.params;
+        const { situacao } = req.body;
+
+        const pedido =
+            pedidoService.atualizarSituacao(
+                codigo,
+                situacao
+            );
+
+        res.status(200).json({
+            mensagem: "Situação atualizada com sucesso",
+            pedido
+        });
+
+    } catch (error) {
+
+        res.status(400).json({
+            erro: error.message
+        });
+
+    }
+}
+
 module.exports = {
     criarPedido,
     listarPedidos,
-    buscarPedidoPorCodigo
+    buscarPedidoPorCodigo,
+    atualizarSituacao
 };

@@ -18,9 +18,10 @@ router.get(
     pedidoController.buscarPedidoPorCodigo
 );
 
-router.patch("/pedidos/:codigo/situacao", (req, res) => {
-    res.send("Atualizar situação");
-});
+router.patch(
+    "/pedidos/:codigo/situacao",
+    pedidoController.atualizarSituacao
+);
 
 router.delete("/pedidos/:codigo", (req, res) => {
     res.send("Excluir pedido");

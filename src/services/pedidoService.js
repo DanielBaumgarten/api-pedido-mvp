@@ -117,8 +117,75 @@ function buscarPedidoPorCodigo(codigo) {
     };
 }
 
+function atualizarSituacao(codigo, situacao) {
+
+    if (isNaN(codigo)) {
+        throw new Error("Código deve ser numérico");
+    }
+
+    if (!situacao) {
+        throw new Error("Situação é obrigatória");
+    }
+
+    const situacoesValidas = [
+        "aberto",
+        "pago",
+        "finalizado"
+    ];
+
+    if (!situacoesValidas.includes(situacao)) {
+        throw new Error("Situação inválida");
+    }
+
+    const pedido = pedidos.find(
+        pedido => pedido.codigo === Number(codigo)
+    );
+
+    if (!pedido) {
+        throw new Error("Pedido não encontrado");
+    }
+
+    pedido.situacao = situacao;
+
+    return pedido;
+}
+
+function atualizarSituacao(codigo, situacao) {
+
+    if (isNaN(codigo)) {
+        throw new Error("Código deve ser numérico");
+    }
+
+    if (!situacao) {
+        throw new Error("Situação é obrigatória");
+    }
+
+    const situacoesValidas = [
+        "aberto",
+        "pago",
+        "finalizado"
+    ];
+
+    if (!situacoesValidas.includes(situacao)) {
+        throw new Error("Situação inválida");
+    }
+
+    const pedido = pedidos.find(
+        pedido => pedido.codigo === Number(codigo)
+    );
+
+    if (!pedido) {
+        throw new Error("Pedido não encontrado");
+    }
+
+    pedido.situacao = situacao;
+
+    return pedido;
+}
+
 module.exports = {
     criarPedido,
     listarPedidos,
-    buscarPedidoPorCodigo
+    buscarPedidoPorCodigo,
+    atualizarSituacao
 };
