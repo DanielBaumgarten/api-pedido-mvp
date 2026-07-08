@@ -80,9 +80,32 @@ function atualizarSituacao(req, res) {
     }
 }
 
+function deletarPedido(req, res) {
+
+    try {
+
+        const { codigo } = req.params;
+
+        pedidoService.deletarPedido(codigo);
+
+        res.status(200).json({
+            mensagem: "Pedido removido com sucesso"
+        });
+
+    } catch (error) {
+
+        res.status(400).json({
+            erro: error.message
+        });
+
+    }
+}
+
+
 module.exports = {
     criarPedido,
     listarPedidos,
     buscarPedidoPorCodigo,
-    atualizarSituacao
+    atualizarSituacao,
+    deletarPedido
 };

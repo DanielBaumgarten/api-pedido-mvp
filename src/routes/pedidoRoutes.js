@@ -23,8 +23,10 @@ router.patch(
     pedidoController.atualizarSituacao
 );
 
-router.delete("/pedidos/:codigo", (req, res) => {
-    res.send("Excluir pedido");
-});
+
+router.delete(
+    "/pedidos/:codigo",
+    pedidoController.deletarPedido
+)
 
 module.exports = router;

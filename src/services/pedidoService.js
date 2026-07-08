@@ -183,9 +183,30 @@ function atualizarSituacao(codigo, situacao) {
     return pedido;
 }
 
+function deletarPedido(codigo) {
+
+    if (isNaN(codigo)) {
+        throw new Error("Código deve ser numérico");
+    }
+
+    const indice = pedidos.findIndex(
+        pedido => pedido.codigo === Number(codigo)
+    );
+
+    if (indice === -1) {
+        throw new Error("Pedido não encontrado");
+    }
+
+    pedidos.splice(indice, 1);
+
+    return true;
+}
+
+
 module.exports = {
     criarPedido,
     listarPedidos,
     buscarPedidoPorCodigo,
-    atualizarSituacao
+    atualizarSituacao,
+    deletarPedido
 };
